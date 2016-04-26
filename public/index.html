@@ -16,6 +16,10 @@
 		html 							{ overflow-y:scroll; }
 		body 							{ padding-top:50px; }
 		#notification-list 				{ margin-bottom:30px; }
+		.selected {
+			background-color:WhiteSmoke;
+			
+		}
 	</style>
 
 	<!-- SPELLS -->
@@ -46,18 +50,31 @@
 
 		<!-- NOTIFICATION LIST -->
 		<div id="notification-list" class="row">
+		
+			<table class="table table-bordered">
+				<tr>
+					<th>
+						<a href="#" ng-click="orderByField='title'; reverseSort = !reverseSort">Title</a>
+					</th>
+					<th>
+						<a href="#" ng-click="orderByField='date'; reverseSort = !reverseSort">Date</a>
+					</th>
+					<th>
+						<a href="#" ng-click="orderByField='isRead'; reverseSort = !reverseSort">Read</a>
+					</th>
+				</tr>
+				<tr ng-repeat="notification in notifications | orderBy:orderByField:reverseSort" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index)">
+					<td>{{ notification.title }}</td>
+					<td>{{ notification.date}}</td>
+					<td ng-if="notification.isRead" ><img src="img/tick-icon.png" width="30" height="30"></td>
+					<td ng-if="!notification.isRead" ><img src="img/tick-gray.png" width="30" height="30"></td>
+				</tr>
+			
+			</table>
 
-			<div class="list-group">
-			  <a href="#" class="list-group-item" ng-repeat="notification in notifications">{{ notification.title }} </a> 
-			</div>
 
-				<!-- LOOP OVER THE NOTIFICATIONS IN $scope.notifications -->
-				<div class="checkbox" ng-repeat="notification in notifications">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(notification._id)"> {{ notification.title }}
-					</label>
-				</div>
 
+				
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
 				</p>
