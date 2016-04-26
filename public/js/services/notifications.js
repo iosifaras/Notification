@@ -6,6 +6,15 @@ angular.module('notificationService', [])
 		return {
 			get : function() {
 				return $http.get('/api/notifications');
+			},
+			getArchived : function() {
+				return $http.get('/api/archive');
+			},
+			getInbox : function() {
+				return $http.get('/api/inbox');
+			},
+			updateRead : function(id) {
+				return $http.post('/api/notifications:notification_id');
 			}
 		}
 	}]);

@@ -38,13 +38,13 @@
 
 		<!-- HEADER AND NOTIFICATION COUNT -->
 		<div class="jumbotron text-center">
-			<h1>Notifications <span class="label label-info">{{ notifications.length }}</span></h1>
+			<h1>Notifications <span class="label label-info">{{ totalnotifications.length }}</span></h1>
 		</div>
 
 		<div class="page-header">
 			<ul class="nav nav-pills" role="tablist">
-		        <li role="presentation" class="active" data-toggle="tab"> <a href="#">Inbox <span class="badge">{{ notifications.length }}</span> </a> </li>
-		        <li role="presentation"> <a href="#" data-toggle="tab">Archived<span class="badge">{{ notifications.length }}</span> </a> </li>
+		        <li role="presentation" class="active" data-toggle="tab"> <a href="#" ng-click="getTheInbox()">Inbox <span class="badge">{{ inbox.length }}</span> </a> </li>
+		        <li role="presentation"> <a href="#" data-toggle="tab" ng-click="getTheArchived()">Archived<span class="badge">{{ archived.length }}</span> </a> </li>
 		    </ul>
 		</div>
 
