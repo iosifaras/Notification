@@ -1,0 +1,71 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="challengeNotify">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>ViaPlay Notification</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<style>
+		html 							{ overflow-y:scroll; }
+		body 							{ padding-top:50px; }
+		#notification-list 				{ margin-bottom:30px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script><!-- load angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/notifications.js"></script> <!-- load our notification service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainController">
+	<div class="container">
+
+		<!-- HEADER AND NOTIFICATION COUNT -->
+		<div class="jumbotron text-center">
+			<h1>Notifications <span class="label label-info">{{ notifications.length }}</span></h1>
+		</div>
+
+		<div class="page-header">
+			<ul class="nav nav-pills" role="tablist">
+		        <li role="presentation" class="active" data-toggle="tab"> <a href="#">Inbox <span class="badge">{{ notifications.length }}</span> </a> </li>
+		        <li role="presentation"> <a href="#" data-toggle="tab">Archived<span class="badge">{{ notifications.length }}</span> </a> </li>
+		    </ul>
+		</div>
+
+		<!-- NOTIFICATION LIST -->
+		<div id="notification-list" class="row">
+
+			<div class="list-group">
+			  <a href="#" class="list-group-item" ng-repeat="notification in notifications">{{ notification.title }} </a> 
+			</div>
+
+				<!-- LOOP OVER THE NOTIFICATIONS IN $scope.notifications -->
+				<div class="checkbox" ng-repeat="notification in notifications">
+					<label>
+						<input type="checkbox" ng-click="deleteTodo(notification._id)"> {{ notification.title }}
+					</label>
+				</div>
+
+				<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x"></span>
+				</p>
+
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
