@@ -80,7 +80,7 @@
    							<table class="table">
 								<tr>
 								<td width="15%" align="center"><img src="{{selectedNotification.img}}" alt="Click to open" class="img-rounded" width="100" height="100"></td>
-								<td align="center"><h4><a ng-href="{{selectedNotification.url}}">{{selectedNotification.url}}</a></h4></td>
+								<td align="center"><h4>{{ selectedNotification.text }}</h4> <h4><a ng-href="{{selectedNotification.url}}">{{selectedNotification.url}}</a></h4></td>
 								<td width="15%" align="center"><h4>{{ selectedNotification.date }}</h4></td>
 								<td width="10%" align="center"><button type="submit" class="btn btn-primary btn-lg" ng-click="makeArchive(selectedNotification._id)">Archive</button></td>
 								</tr>
