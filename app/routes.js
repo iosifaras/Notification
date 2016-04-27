@@ -67,7 +67,22 @@ module.exports = function (app) {
             if (err)
                 res.send(err);
             // set the notifications properties (comes from the request)
-            notif.isRead = req.body.isRead;
+            notif.isRead = "true";
+            // save the data received
+            notif.save(function(err) {
+                if (err)
+                    res.send(err);
+                // give some success message
+                res.json({ message: 'notification successfully updated!'});
+            });
+        });
+    });
+    
+    app.put('/api/getarchived/:id', function(req, res) {
+        Notify.findById(req.params.id, function(err, notif) {
+            if (err)
+                res.send(err);
+            // set the notifications properties (comes from the request)
             notif.isArchive = req.body.isArchive;
             // save the data received
             notif.save(function(err) {

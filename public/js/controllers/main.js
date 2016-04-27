@@ -12,6 +12,7 @@ angular.module('notificationController', [])
 			$scope.selectedNotification = notification;
 			div = document.getElementById('details');
             div.style.display = "block";
+			$scope.makeRead(notification._id);
 		}
 		// GET =====================================================================
 		// when landing on the page, get all notifications and show them
@@ -41,10 +42,10 @@ angular.module('notificationController', [])
 				// call the create function from our service (returns a promise object)
 				Notifications.getInbox()
 
-					// if successful creation, call our get function to get all the new todos
+					// if successful creation, call our get function to get all the new notifications
 					.success(function(data) {
 						$scope.loading = false;
-						$scope.notifications = data; // assign our new list of todos
+						$scope.notifications = data; // assign our new list of notifications
 					});
 					
 			};
@@ -54,10 +55,10 @@ angular.module('notificationController', [])
 				// call the create function from our service (returns a promise object)
 				Notifications.getArchived()
 
-					// if successful creation, call our get function to get all the new todos
+					// if successful creation, call our get function to get all the new notifications
 					.success(function(data) {
 						$scope.loading = false;
-						$scope.notifications = data; // assign our new list of todos
+						$scope.notifications = data; // assign our new list of notifications
 					});
 			};
 
@@ -66,10 +67,10 @@ angular.module('notificationController', [])
 				// call the create function from our service (returns a promise object)
 				Notifications.updateRead(id)
 
-					// if successful creation, call our get function to get all the new todos
+					// if successful creation, call our get function to get all the new notifications
 					.success(function(data) {
 						$scope.loading = false;
-						$scope.notifications = data; // assign our new list of todos
+						$scope.notifications = data; // assign our new list of notifications
 					});
 			};
 			
@@ -79,7 +80,7 @@ angular.module('notificationController', [])
 			
 			.success(function(data) {
 						$scope.loading = false;
-						$scope.notifications = data; // assign our new list of todos
+						$scope.notifications = data; // assign our new list of notifications
 					});
 			};
 

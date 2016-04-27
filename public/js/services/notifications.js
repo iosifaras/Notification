@@ -14,10 +14,10 @@ angular.module('notificationService', [])
 				return $http.get('/api/inbox');
 			},
 			updateRead : function(id) {
-				return $http.post('/api/notifications' + id);
+				return $http.put('/api/notifications/' + id);
 			},
 			updateArchive : function(id) {
-				return $http.post('/api/archive' + id);
+				return $http.put('/api/getarchived/' + id);
 			}
 		}
 	}]);
