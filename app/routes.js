@@ -67,7 +67,7 @@ module.exports = function (app) {
             if (err)
                 res.send(err);
             // set the notifications properties (comes from the request)
-            notif.isRead = "true";
+            notif.isRead = true;
             // save the data received
             notif.save(function(err) {
                 if (err)
@@ -83,7 +83,7 @@ module.exports = function (app) {
             if (err)
                 res.send(err);
             // set the notifications properties (comes from the request)
-            notif.isArchive = req.body.isArchive;
+            notif.isArchive = !notif.isArchive;
             // save the data received
             notif.save(function(err) {
                 if (err)
