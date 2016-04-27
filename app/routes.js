@@ -62,31 +62,20 @@ module.exports = function (app) {
         getArchived(res);
     });
 
-    // update read status on notification
-    app.post('/api/notifications:notification_id', function (req, res) {
-        // use mongoose to get all notifications in the database
-        Notify.updateOne(
-            { _id : req.params.notification_id },
-            { $set: { "isRead": true } },
-            function (err, read) {
-                if (err) {
+    app.put('/api/notifications/:id', function(req, res) {
+        Notify.findById(req.params.id, function(err, notif) {
+            if (err)
+                res.send(err);
+            // set the notifications properties (comes from the request)
+            notif.isRead = req.body.isRead;
+            notif.isArchive = req.body.isArchive;
+            // save the data received
+            notif.save(function(err) {
+                if (err)
                     res.send(err);
-                }
-            res.json(read);
-        });
-    });
-
-    app.post('/api/archive:notification_id', function (req, res) {
-        // use mongoose to get all notifications in the database
-        var bool = Notify.find({ _id : req.params.notification_id });
-        Notify.updateOne(
-            { _id : req.params.notification_id },
-            { $set: { isArchive: !bool.isArchive } },
-            function (err, arch) {
-                if (err) {
-                    res.send(err);
-                }
-            res.json(arch);
+                // give some success message
+                res.json({ message: 'notification successfully updated!'});
+            });
         });
     });
     // application -------------------------------------------------------------
