@@ -36,16 +36,8 @@ function getArchived(res) {
     });
 };
 
-function updateRead(res) {
-    Notify.updateOne(
-        { _id : req.params.notification_id },
-        { $set: { "isRead": true } },
-         function (err, read) {
-        if (err) {
-            res.send(err);
-        }
-        res.json(read);
-    });
+function updateArchive(res){
+    var bool = Notify.find({ _id : req.params.notification_id })
 };
 
 
@@ -73,9 +65,30 @@ module.exports = function (app) {
     // update read status on notification
     app.post('/api/notifications:notification_id', function (req, res) {
         // use mongoose to get all notifications in the database
-        updateRead(res);
+        Notify.updateOne(
+            { _id : req.params.notification_id },
+            { $set: { "isRead": true } },
+            function (err, read) {
+                if (err) {
+                    res.send(err);
+                }
+            res.json(read);
+        });
     });
 
+    app.post('/api/archive:notification_id', function (req, res) {
+        // use mongoose to get all notifications in the database
+        var bool = Notify.find({ _id : req.params.notification_id });
+        Notify.updateOne(
+            { _id : req.params.notification_id },
+            { $set: { isArchive: !bool.isArchive } },
+            function (err, arch) {
+                if (err) {
+                    res.send(err);
+                }
+            res.json(arch);
+        });
+    });
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
         res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)

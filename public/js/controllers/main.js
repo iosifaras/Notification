@@ -7,8 +7,11 @@ angular.module('notificationController', [])
 		$scope.reverseSort = true;
 
 		$scope.selectedRow = null;  // initialize our variable to null
-		$scope.setClickedRow = function(index){  //function that sets the value of selectedRow to current index
+		$scope.setClickedRow = function(index, notification){  //function that sets the value of selectedRow to current index
 			$scope.selectedRow = index;
+			$scope.selectedNotification = notification;
+			div = document.getElementById('details');
+            div.style.display = "block";
 		}
 		// GET =====================================================================
 		// when landing on the page, get all notifications and show them
@@ -34,7 +37,7 @@ angular.module('notificationController', [])
 
 
 		$scope.getTheInbox = function() {
-
+				$scope.loading = true;
 				// call the create function from our service (returns a promise object)
 				Notifications.getInbox()
 
@@ -43,10 +46,11 @@ angular.module('notificationController', [])
 						$scope.loading = false;
 						$scope.notifications = data; // assign our new list of todos
 					});
+					
 			};
 
 		$scope.getTheArchived = function() {
-
+				$scope.loading = true;
 				// call the create function from our service (returns a promise object)
 				Notifications.getArchived()
 
@@ -58,7 +62,7 @@ angular.module('notificationController', [])
 			};
 
 		$scope.makeRead = function(id) {
-
+				$scope.loading = true;
 				// call the create function from our service (returns a promise object)
 				Notifications.updateRead(id)
 
@@ -68,11 +72,15 @@ angular.module('notificationController', [])
 						$scope.notifications = data; // assign our new list of todos
 					});
 			};
-
-		$scope.setDate = function() {
-
-				var myDate = new Date(Notifications.notification.date);
-				$scope.date = mydate;
+			
+		$scope.makeArchive = function(id){
+			$scope.loading = true;
+			Notifications.updateArchive(id)
+			
+			.success(function(data) {
+						$scope.loading = false;
+						$scope.notifications = data; // assign our new list of todos
+					});
 			};
 
 	}]);
