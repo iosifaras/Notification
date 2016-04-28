@@ -13,6 +13,7 @@ angular.module('notificationController', [])
 			getButtonText();
 			div = document.getElementById('details');
             div.style.display = "block";
+			// updates the list when is read
 			$scope.makeRead(notification._id);
 		}
 		// GET =====================================================================
@@ -37,7 +38,7 @@ angular.module('notificationController', [])
 				$scope.loading = false;
 			});
 
-
+		// gets the data for the Inbox list
 		$scope.getTheInbox = function() {
 				$scope.loading = true;
 				// call the create function from our service (returns a promise object)
@@ -52,7 +53,8 @@ angular.module('notificationController', [])
 					div.style.display = "none";
 					
 			};
-
+		
+		// gets the data for the Archived list
 		$scope.getTheArchived = function() {
 				$scope.loading = true;
 				// call the create function from our service (returns a promise object)
@@ -67,6 +69,7 @@ angular.module('notificationController', [])
 					div.style.display = "none";
 			};
 
+		// updates the isRead status
 		$scope.makeRead = function(id) {
 				$scope.loading = true;
 				// call the create function from our service (returns a promise object)
@@ -81,6 +84,7 @@ angular.module('notificationController', [])
 				div.style.display = "block";
 			};
 			
+		// by pressing the button it updates the data everywhere and reload
 		$scope.makeArchive = function(id){
 			$scope.loading = true;
 			Notifications.updateArchive(id)
@@ -103,6 +107,7 @@ angular.module('notificationController', [])
 			div.style.display = "none";
 			};
 			
+		// reload the list according to tab id
 		$scope.reloadTab = function(){
 			if ($('li.active a').attr('id')=="inboxTab"){
 				$scope.getTheInbox();
@@ -112,6 +117,7 @@ angular.module('notificationController', [])
 			}
 		};
 		
+		// Change the text of the button according to the tab list
 		getButtonText = function(){
 			if ($('li.active a').attr('id')=="inboxTab")
 				$scope.buttonText = "Archive"
