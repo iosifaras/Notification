@@ -13,8 +13,8 @@ And here is a screenshot of the app:
 To begin with since this project was implemented in NodeJS, Mondgodb and Angular JS, you will need to install these and follow steps below
 
 * install NodeJS and MongoDB
-* navigate to the project folder and run `npm install` in order to install the necessary libraries.
-* next you have to open from another terminal the database by runing `mongod` or `sudo mongod`
+* NOTE: The libraries are included in the folder **node_modules** of the project folder. If it doesn't work or you want to clean install them, delete the folder **node_modules** and run `npm install` in the project folder in order to install the necessary libraries.
+* next you have to open from another terminal the database by running `mongod` or `sudo mongod`
 * run on the project folder `node server.js` in order to have the project up and running.
 
 Now we have to setup the database
