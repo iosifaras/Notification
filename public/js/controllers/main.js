@@ -10,6 +10,7 @@ angular.module('notificationController', [])
 		$scope.setClickedRow = function(index, notification){  //function that sets the value of selectedRow to current index
 			$scope.selectedRow = index;
 			$scope.selectedNotification = notification;
+			getButtonText();
 			div = document.getElementById('details');
             div.style.display = "block";
 			$scope.makeRead(notification._id);
@@ -109,6 +110,13 @@ angular.module('notificationController', [])
 			else {
 				$scope.getTheArchived();
 			}
+		};
+		
+		getButtonText = function(){
+			if ($('li.active a').attr('id')=="inboxTab")
+				$scope.buttonText = "Archive"
+			else
+				$scope.buttonText = "Unarchive"
 		};
 
 	}]);
