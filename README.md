@@ -2,6 +2,10 @@
 
 In this document I am going to explain about the Notification web page app.
 
+And here is a screenshot of the app:
+
+![alt tag](Screenshot.png)
+
 ## How to use
 
 ### Preparation of the system
