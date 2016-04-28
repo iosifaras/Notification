@@ -31,7 +31,8 @@ Now run `localhost:8080` on your browser and let's start with the fun part.
 
 We can see on top the total notifications that exist on the system and on the tabs above we have categorized the notifications to **Inbox** and **Archive**. Everything is going to be in the supposingly from the beginning.
 
-The data are represented as a list an we can see the **title**, **date** and if they have been **read**.
+The data are represented as a list and we can see the **title**, **date** and if they have been **read**.
+We can sort the notifications based on each of these 3 categories, even though they are sorted by date by default.
 
 If we clcik on one of the notiications a panel will appear on the bottom providing more informations about the notification and automatically the notification is checked as Read. 
 
