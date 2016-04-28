@@ -46,7 +46,9 @@ angular.module('notificationController', [])
 					.success(function(data) {
 						$scope.loading = false;
 						$scope.notifications = data; // assign our new list of notifications
+						$scope.inbox = data;
 					});
+					div.style.display = "none";
 					
 			};
 
@@ -59,7 +61,9 @@ angular.module('notificationController', [])
 					.success(function(data) {
 						$scope.loading = false;
 						$scope.notifications = data; // assign our new list of notifications
+						$scope.archived = data;
 					});
+					div.style.display = "none";
 			};
 
 		$scope.makeRead = function(id) {
@@ -78,10 +82,21 @@ angular.module('notificationController', [])
 			$scope.loading = true;
 			Notifications.updateArchive(id)
 			
-			.success(function(data) {
+				.success(function(data) {
 						$scope.loading = false;
 						$scope.notifications = data; // assign our new list of notifications
 					});
+			Notifications.getInbox()
+					.success(function(data) {
+						$scope.inbox = data;
+						$scope.loading = false;
+					});
+			Notifications.getArchived()
+					.success(function(data) {
+						$scope.archived = data;
+						$scope.loading = false;
+					});
+			div.style.display = "none";
 			};
 
 	}]);
