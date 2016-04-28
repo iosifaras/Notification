@@ -76,6 +76,8 @@ angular.module('notificationController', [])
 						$scope.loading = false;
 						$scope.notifications = data; // assign our new list of notifications
 					});
+				$scope.reloadTab();
+				div.style.display = "block";
 			};
 			
 		$scope.makeArchive = function(id){
@@ -96,7 +98,17 @@ angular.module('notificationController', [])
 						$scope.archived = data;
 						$scope.loading = false;
 					});
+			$scope.reloadTab();
 			div.style.display = "none";
 			};
+			
+		$scope.reloadTab = function(){
+			if ($('li.active a').attr('id')=="inboxTab"){
+				$scope.getTheInbox();
+			}
+			else {
+				$scope.getTheArchived();
+			}
+		};
 
 	}]);
