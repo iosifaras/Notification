@@ -60,8 +60,6 @@ To show all the details of the notification a panel is used under the list which
 
 This panel has every information that can be provided from the database. Title on top, then under the title there are image, text with url, date, button (Archive or Unarchive) in this order.
 
-Since I wasn't sure what the image could be I assumed that it might need a small one for avatar of the user or a thumbnail so I made the image to take the size 100X100 px.
-
 ### System
 
 **Database:** The database has one collection and every field is String, except **isRead** and **isArchive** which are booleans in order to use them as flags.
