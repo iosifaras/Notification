@@ -1,4 +1,4 @@
-# The Viaplay Code Challenge
+# Notification Single Page Web App
 
 In this document I am going to explain about the Notification web page app.
 
